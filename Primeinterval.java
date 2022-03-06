@@ -22,7 +22,5 @@ count+=1;
 if(count == 2)
 System.out.println(i);
 }
-//closing scanner class(not mandatory but good practice)
-s.close();
 }
 }
