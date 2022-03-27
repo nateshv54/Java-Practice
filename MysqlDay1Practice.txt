@@ -1,0 +1,258 @@
+mysql>  use weekend_batch;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_weekend_batch |
++-------------------------+
+| student_info            |
++-------------------------+
+1 row in set (0.06 sec)
+
+mysql>  desc student_info;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sid   | int(11)     | YES  |     | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| marks | int(11)     | YES  |     | NULL    |       |
+| city  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from student_info;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  108 | Karthik |    90 | Hyderabad |
++------+---------+-------+-----------+
+4 rows in set (0.07 sec)
+
+mysql> insert into student_info values(104,'Satish',34,'pune');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from student_info;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  108 | Karthik |    90 | Hyderabad |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select sid,sname from student_info;
++------+---------+
+| sid  | sname   |
++------+---------+
+|  101 | praveen |
+|  103 | keerthi |
+|  105 | poorna  |
+|  108 | Karthik |
+|  104 | Satish  |
++------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select sid, marks, city, sname from student_info;
++------+-------+-----------+---------+
+| sid  | marks | city      | sname   |
++------+-------+-----------+---------+
+|  101 |    98 | Hyderabad | praveen |
+|  103 |    78 | pune      | keerthi |
+|  105 |    78 | Bangalore | poorna  |
+|  108 |    90 | Hyderabad | Karthik |
+|  104 |    34 | pune      | Satish  |
++------+-------+-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student_info where city='Hyderabad';
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  108 | Karthik |    90 | Hyderabad |
++------+---------+-------+-----------+
+2 rows in set (0.06 sec)
+
+mysql> select * from student_info where city='pune';
++------+---------+-------+------+
+| sid  | sname   | marks | city |
++------+---------+-------+------+
+|  103 | keerthi |    78 | pune |
+|  104 | Satish  |    34 | pune |
++------+---------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where marks=90;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  108 | Karthik |    90 | Hyderabad |
++------+---------+-------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_info where marks>50;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  108 | Karthik |    90 | Hyderabad |
++------+---------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_info where marks<=50;
++------+--------+-------+------+
+| sid  | sname  | marks | city |
++------+--------+-------+------+
+|  104 | Satish |    34 | pune |
++------+--------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_info where city='pune' and marks>=70;
++------+---------+-------+------+
+| sid  | sname   | marks | city |
++------+---------+-------+------+
+|  103 | keerthi |    78 | pune |
++------+---------+-------+------+
+1 row in set (0.07 sec)
+
+mysql> select * from student_info order by marks;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  104 | Satish  |    34 | pune      |
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  108 | Karthik |    90 | Hyderabad |
+|  101 | praveen |    98 | Hyderabad |
++------+---------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student_info order by marks desc;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  108 | Karthik |    90 | Hyderabad |
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student_info order by marks desc limit 2;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  108 | Karthik |    90 | Hyderabad |
++------+---------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info order by marks desc limit 1,2;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  108 | Karthik |    90 | Hyderabad |
+|  103 | keerthi |    78 | pune      |
++------+---------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>  select * from student_info where sname like 'p%';
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  105 | poorna  |    78 | Bangalore |
++------+---------+-------+-----------+
+2 rows in set (0.07 sec)
+
+mysql> select * from student_info where sname like 'k%';
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  103 | keerthi |    78 | pune      |
+|  108 | Karthik |    90 | Hyderabad |
++------+---------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where sname like '%a';
++------+--------+-------+-----------+
+| sid  | sname  | marks | city      |
++------+--------+-------+-----------+
+|  105 | poorna |    78 | Bangalore |
++------+--------+-------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_info where sname like '%na';
++------+--------+-------+-----------+
+| sid  | sname  | marks | city      |
++------+--------+-------+-----------+
+|  105 | poorna |    78 | Bangalore |
++------+--------+-------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_info where sname like '%a%';
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  101 | praveen |    98 | Hyderabad |
+|  105 | poorna  |    78 | Bangalore |
+|  108 | Karthik |    90 | Hyderabad |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_info where sname like '_a%';
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  108 | Karthik |    90 | Hyderabad |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where sname not like 'p%';
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  103 | keerthi |    78 | pune      |
+|  108 | Karthik |    90 | Hyderabad |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>  select * from student_info where marks between 50 and 80;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
++------+---------+-------+-----------+
+2 rows in set (0.07 sec)
+
+mysql> select * from student_info where marks=78 or marks=34 or marks=67;
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+3 rows in set (0.06 sec)
+
+mysql> select * from student_info where marks in(78,67,34);
++------+---------+-------+-----------+
+| sid  | sname   | marks | city      |
++------+---------+-------+-----------+
+|  103 | keerthi |    78 | pune      |
+|  105 | poorna  |    78 | Bangalore |
+|  104 | Satish  |    34 | pune      |
++------+---------+-------+-----------+
+3 rows in set (0.06 sec)
